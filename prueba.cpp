@@ -1,11 +1,13 @@
 #include "book_actions.cpp"
 #include <string>
 #include "TECFS-Disk.cpp"
+#include "disk_node.cpp"
 
 using namespace std; //12.3 KB
 
 book_actions actions;
 TECFS_Disk manejador;
+disk_node nodo;
 
 
 void crear(){
@@ -30,7 +32,10 @@ void leer(){
 }
 
 int main(){
-    manejador.DiskNodeSize();
+    //vector<string> diskNodes = manejador.getDiskNodes();
+    //manejador.DiskNodeSize(diskNodes);
+    //cout << "Normal: " << manejador.FileSize("./NUEVA/prueba.txt") << endl;
+    nodo.create(3);
 
     return 0;
 }
