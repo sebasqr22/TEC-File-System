@@ -11,8 +11,11 @@ class book_actions{
     public:
         void createBook(string name, string content){ //it's not necesary to add .txt
             string nameAux = route + name + ".txt";
-            ofstream o(nameAux);
-            o << content << endl;
+            ofstream o(route);
+            o.close();
+
+            o.open(nameAux, fstream::app);
+            o << content << "\n";
             o.close();
             cout << "Book '" + name + "' was succesfully created...";
         }
