@@ -35,7 +35,7 @@ int main(){
     //vector<string> diskNodes = manejador.getDiskNodes();
     //manejador.DiskNodeSize(diskNodes);
     //cout << "Normal: " << manejador.FileSize("./NUEVA/prueba.txt") << endl;
-    nodo.create(3);
+    nodo.create();
 
     return 0;
 }
