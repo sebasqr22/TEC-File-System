@@ -3,7 +3,7 @@
 #include "TECFS-Disk.cpp"
 #include "disk_node.cpp"
 
-using namespace std; //12.3 KB
+using namespace std;
 
 book_actions actions;
 TECFS_Disk manejador;
