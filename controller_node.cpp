@@ -48,6 +48,12 @@ vector<byte> recoverData(vector<byte> A, vector<byte> B, vector<byte> vectorPari
     }
     return vectorRecovered;
 }
+void locatePartitionErased(LinkedList<vector<byte>> book, vector<byte> vectorRecovered) {
+    for (int i=0; i < 4; i++) {
+        if (book.getElement(i)->getData() == vectorRecovered)
+            book.insertElement(vectorRecovered, i);
+    }
+}
 
 LinkedList<vector<byte>> splitFile(string file) {
     ifstream toSplit;
@@ -88,15 +94,15 @@ LinkedList<vector<byte>> splitFile(string file) {
     return book;
 }
 
-int main(){
+/*int main(){
     LinkedList<vector<byte>> book = splitFile("test.txt");
     createBookPartitions(book, "test");
     int diskToErase;
     cout << "Enter a disk you want to erase: ";
     cin >> diskToErase;
     book.deleteElement(diskToErase);
-    book.insertElement(recoverData(book.getElement(0)->getData(), book.getElement(1)->getData(), book.getElement(2)->getData()), diskToErase);
+    //book.insertElement(recoverData(book.getElement(0)->getData(), book.getElement(1)->getData(), book.getElement(2)->getData()), diskToErase);
     createBookPartitions(book, "test");
 
     return 0;
-}
+}*/
