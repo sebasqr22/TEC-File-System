@@ -3,7 +3,7 @@
  * @title Huffman
  * @brief Class that compresses a string using Huffman's algortihm
  * */
-
+#pragma once
 #include <iostream>
 #include <bits/stdc++.h>
 #define MAX_TREE_HT 256
@@ -106,10 +106,96 @@ string crear(string datos){
     }
     return resultado;
 }
-/*
-int main(){
-    string listo = crear("EL Bicho SIUU");
-    cout << listo << endl;
-    cout << decodificacion(minimo.top(), listo);
-    return 0;
-}*/
+
+string diccionarioStr(){
+    string mapa;
+    
+    for (auto v=caracteres.begin(); v!=caracteres.end(); v++){
+        //cout << v->first <<' ' << v->second << endl;
+        mapa += "-";
+        mapa += v->first;
+        mapa += "|";
+        mapa += v->second;
+        mapa += "|";
+    };
+    mapa += "-";
+    return mapa;
+}
+
+string decodeHuffman(vector<string> simbolo, vector<string> parte, string code){
+    string delimitador = "-";
+    size_t pos1 = 0;
+    string key;
+    int j = 0;
+    string decodificado = "";
+
+    while ((pos1 = code.find(delimitador)) != std::string::npos) {
+        key = code.substr(0, pos1);
+
+        // loop through the array elements
+        for (size_t i = 0; i < parte.size(); i++) {
+            if (key == parte[i]){
+                decodificado += simbolo[i];
+                break;
+            }
+        }
+        code.erase(0, pos1 + delimitador.length());
+    }
+    return decodificado;
+}
+
+string comprimirMensaje(string mensaje){
+    string comprimido;
+    for (auto i: mensaje){
+        comprimido += caracteres[i];
+        comprimido += "-";
+    }
+    return comprimido;
+}
+
+string start_huffman(string mensaje){
+    setFrecuencia(mensaje, mensaje.length());
+    generarHuffman(mensaje.length());
+    string mapa = diccionarioStr();
+    return mapa;
+}
+
+string decomprimir(string mapa, string comprimido){
+    std::string delimitador = "-";
+    std::vector<std::string> simbolo;
+    std::vector<std::string> parte;
+    size_t pos1 = 0;
+    size_t pos2 = 0;
+    std::string key;
+    std::string value;
+    bool first = true;
+    int moment = 0;
+
+    while ((pos1 = mapa.find(delimitador)) != std::string::npos) {
+        key = mapa.substr(0, pos1);
+        if (first == true){
+            first = false;
+        }
+        else{
+            while ((pos2 = key.find("|")) != std::string::npos) {
+                value = key.substr(0, pos2);
+                if(moment == 0){
+                    simbolo.push_back(value);
+                    moment += 1;
+                }else{
+                    parte.push_back(value);
+                }
+                key.erase(0, pos2 + 1);
+            }
+            moment = 0;
+        }
+        mapa.erase(0, pos1 + delimitador.length());
+    }
+
+    string decomprimido = decodeHuffman(simbolo, parte, comprimido);
+    return decomprimido;
+}
+
+priority_queue<nodo *, std::vector<nodo *>, comparacion> getMinimo() {
+    return minimo;
+}

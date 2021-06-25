@@ -6,7 +6,6 @@
 using namespace std; //12.3 KB
 
 book_actions actions;
-TECFS_Disk manejador;
 disk_node nodo;
 
 

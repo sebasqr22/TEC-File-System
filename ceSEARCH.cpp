@@ -9,11 +9,11 @@
 #include <string>
 #include <vector>
 #include "LinkedList.cpp"
-#include "controller_node.cpp"
 #include "text_box.cpp"
 #include "button.cpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "controller_node.cpp"
 
 using namespace std;
 using namespace sf;
