@@ -29,6 +29,12 @@ class TECFS_Disk{
         void setRoute(string routeA){
             route + routeA;
         }
+        void setRoute2(string routeA) {
+            route = routeA;
+        }
+        string getRoute() {
+            return route;
+        }
         /**
          * @brief Method to obtain a file's size
          * @return Size of a file

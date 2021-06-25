@@ -6,26 +6,33 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include <dirent.h>
 #include <SFML/Network.hpp>
 #include "TECFS-Disk.cpp"
 #include "huffman.cpp"
-#include "tinyxml2.cpp"
+#include "tinyxml2.h"
 
 using namespace std;
 using namespace sf;
 using namespace tinyxml2;
+
 /**
  * @brief Method to set initial data
  * */
-void setData(TECFS_Disk *checker, IpAddress *ip, int *port) {
+void setData(TECFS_Disk &checker, string &ip, int &port) {
     XMLDocument doc;
     doc.LoadFile("config.xml");
-    ip = doc.FirstChildElement("config")->FirstChildElement("ip")->GetText();
-    port = doc.FirstChildElement("config")->FirstChildElement("ip")->NextSiblingElement("port")->GetText();
-    checker->setRoute(doc.FirstChildElement("config")->LastChildElement("route")->GetText());
+    const char* value = doc.FirstChildElement("config")->FirstChildElement("ip")->GetText();
+    ip = value;
+    const char* value2 = doc.FirstChildElement("config")->FirstChildElement("ip")->NextSiblingElement("port")->GetText();
+    string port_ = value2;
+    port = stoi(port_);
+    const char* value3 = doc.FirstChildElement("config")->LastChildElement("route")->GetText();
+    string route = value3;
+    checker.setRoute2(route);
 }
 /**
  * @brief Main method of the class
@@ -33,11 +40,13 @@ void setData(TECFS_Disk *checker, IpAddress *ip, int *port) {
 int main() {
     Packet packetS, packetR;
     TcpListener listener;
-    IpAddress ip;
+    string ip_;
     int port;
     TECFS_Disk checker;
     TcpSocket socket;
-    setData(&checker, &ip, &port);
+    setData(checker, ip_, port);
+    //IpAddress ip = IpAddress(ip_.c_str());
+    IpAddress ip = IpAddress::getLocalAddress();
     listener.listen(port);
     listener.accept(socket);
     string mapa;

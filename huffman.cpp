@@ -213,6 +213,7 @@ string decomprimir(string mapa, string comprimido){
 /**
  * @brief Method that returns de main tree
  * @return Main tree
+ **/
 priority_queue<nodo *, std::vector<nodo *>, comparacion> getMinimo() {
     return minimo;
 }
