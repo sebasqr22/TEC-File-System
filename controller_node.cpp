@@ -61,18 +61,24 @@ vector<byte> calculateParity(vector<byte> A, vector<byte> B, vector<byte> C) {
  * @brief Method to recover lost data of a book
  * @return recovered book vector
  **/
-string recoverData(string partA, string partB, string parityString) {
+string recoverData(string partAStr, string partBStr, string parityString) {
     vector<byte> recoveredVector;
 
-    vector<byte> partA;
-}
-/*vector<byte> recoverData(vector<byte> A, vector<byte> B, vector<byte> vectorParity) {
-    vector<byte> vectorRecovered;
-    for (int i=0; i < vectorParity.size(); i++){
-        vectorRecovered.push_back(A[i] ^ B[i] ^ vectorParity[i]);
+    vector<byte> partA(partAStr.begin(), partAStr.end());
+    vector<byte> partB(partBStr.begin(), partBStr.end());
+    vector<byte> parity(parityString.begin(), parityString.end());
+
+    for (int i=0; i < parity.size(); i++)
+        recoveredVector.push_back(partA[i] ^ partB[i] ^ parity[i]);
+
+    if (partA.size() != partB.size()) {
+        for (int j=0; j < (parity.size() - partA.size()); j++)
+            recoveredVector.erase(recoveredVector.begin() + (recoveredVector.size() - 1));
     }
-    return vectorRecovered;
-}*/
+
+    string recovered(recoveredVector.begin(), recoveredVector.end());
+    return recovered;
+}
 
 /**
  * @brief Method to locate what disk was erased
@@ -146,6 +152,7 @@ string joinBookParts(string part1, string part2, string part3) {
 vector<string> openBooks(string name) {
     vector<string> books;
     vector<string> bookParts;
+    vector<string> bookPartsName;
     DIR * dir; struct dirent *diread;
     for (int j=0; j < 20; j++) {
         for (int i=0; i < 4; i++) {
@@ -163,6 +170,7 @@ vector<string> openBooks(string name) {
                         }
                         is.close();
                         bookParts.push_back(content);
+                        bookPartsName.push_back(fname);
                         cout << "found book: " << fname << " in " << route << endl;
                         //cout << "contents: " << content << endl;
                     }
@@ -170,16 +178,50 @@ vector<string> openBooks(string name) {
             }
         }
         if (bookParts.size() != 4 && !bookParts.empty()) {
-            cout << "here" << endl;
-        }
-        else {
+            string bookContent, lostContent;
+            int lostPart;
+            string name_ = bookPartsName[0].substr(0, bookPartsName[0].size() - 4);
+            for (int i=0; i < 3; i++) {
+                bookPartsName[i] = bookPartsName[i].substr(0, bookPartsName[i].size() - 4);
+                if (((bookPartsName[i].back()) - '0') != i) {
+                    lostContent = recoverData(bookParts[0], bookParts[1], bookParts[2]);
+                    cout << "recovering data..." << endl;
+                    bookParts.insert(bookParts.begin() + (i), lostContent);
+                    break;
+                }
+            }
             cout << "joining the books..." << endl;
-            string bookContent;
+            bookParts.pop_back();
             for (auto & i : bookParts) {
                 bookContent += i;
-                cout << i << endl;
             }
-            books.push_back(bookContent);
+            
+            string nameAux = "./openedBooks/" + name + ".txt";
+            ofstream o("./openedBooks/");
+            o.close();
+            o.open(nameAux, fstream::app);
+            o << bookContent;
+            o.close();
+
+            books.push_back(nameAux);
+            bookParts.clear();
+        }
+        else if (bookParts.size() == 4) {
+            cout << "joining the books..." << endl;
+            string bookContent;
+            bookParts.pop_back();
+            string name_ = bookPartsName[0].substr(0, bookPartsName[0].size() - 4);
+            for (auto & i : bookParts) {
+                bookContent += i;
+            }
+            string nameAux = "./openedBooks/" + name + ".txt";
+            ofstream o("./openedBooks/");
+            o.close();
+            o.open(nameAux, fstream::app);
+            o << bookContent;
+            o.close();
+            
+            books.push_back(nameAux);
             bookParts.clear();
         }
     }
@@ -187,7 +229,11 @@ vector<string> openBooks(string name) {
 }
 
 /*int main(){
-    LinkedList<vector<byte>> book = splitFile("test.txt");
+    LinkedList<vector<byte>> book; 
+    for (int i=0; i < 10; i++) {
+        book = splitFile(i);
+        createBookPartitions(book, i);
+    }
     LinkedList<vector<byte>> book2 = splitFile("test2.txt");
     //LinkedList<vector<byte>> book2 = splitFile("test.txt");
     createBookPartitions(book, "test");

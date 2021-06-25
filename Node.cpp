@@ -25,15 +25,14 @@ public:
         Node::data = data;
     }
     /**
-     * @brief Method tu get an specific data
+     * @brief Method to get a specific data
      * @return Data
      **/
     T getData() {
         return data;
     }
-position
     /**
-     * @brief Method to set nect node
+     * @brief Method to set next node
      **/
     void setNext(Node *next) {
         Node::next = next;

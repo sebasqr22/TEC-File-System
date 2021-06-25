@@ -60,7 +60,7 @@ class text_box {
             return isSelected;
         }
         /**
-         * @brief Method to se a string
+         * @brief Method to set a string
          **/
         void setString(Event input) {
             if (isSelected) {
@@ -74,6 +74,14 @@ class text_box {
                 
                 text.setString(textStr + "_");
             }
+            text.setString(textStr);
+        }
+
+        /**
+         * @brief Method to set the whole string
+         **/
+        void setString2(string input) {
+            textStr = input;
             text.setString(textStr);
         }
 
