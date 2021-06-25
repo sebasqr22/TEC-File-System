@@ -1,3 +1,9 @@
+/**
+ * @file LinkedList.cpp
+ * @title Linked List
+ * @brief Class that creates a Linked List
+**/
+
 #pragma once
 #include <iostream>
 #include "Node.cpp"
@@ -9,15 +15,23 @@ private:
     int size;
 
 public:
+    /**
+     * @brief Main constructor of the class
+    **/
     LinkedList(){
         first = nullptr;
         size = 0;
     }
-
+    /**
+     * @brief Method that return the size
+     * @return Size 
+     **/
     int getSize() {
         return size;
     }
-
+    /**
+     * @brief Method that nserts and element at the first position of the list
+     * */
     void insertAtFirst(T data) {
         Node<T> *newNode = new Node<T>(data);
         if(first == nullptr){
@@ -28,7 +42,10 @@ public:
         }
         size++;
     }
-
+    
+    /**
+     * @brief Method that inserts and element at the end of the list
+     * */
     void insertAtEnd(T data) {
         Node<T> *newNode = new Node<T>(data);
         if (first == nullptr) {
@@ -42,7 +59,9 @@ public:
         }
         size++;
     }
-
+    /**
+     * @brief Method that inserts and element into the list
+    **/
     void insertElement(T data, int position) {
         Node<T> *newNode = new Node<T>(data);
         Node<T> *current = first;
@@ -70,7 +89,9 @@ public:
         }
         size++;
     }
-
+    /**
+     * @brief Method to obtain an element from the list by postion
+     **/
     Node<T>* getElement(int position) {
         Node<T> *current = first;
 
@@ -83,7 +104,9 @@ public:
         }
         return current;
     }
-
+    /**
+     * @brief Method to obtain an element from the list by data
+     **/
     Node<T>* getElement2(T data) {
         Node<T> *current = first;
 
@@ -96,7 +119,9 @@ public:
         Node<T>* notFoundNode = new Node<T>(nullptr);
         return notFoundNode;
     }
-
+    /**
+     * @brief Method to set an element into the list
+     * */
     void setElement(T element, int position) {
         Node<T> *current = first;
 
@@ -118,7 +143,9 @@ public:
             }
         }
     }
-
+    /**
+     * @brief Method to delete an element from the list by position
+     * */
     void deleteElement(int position) {
         if (position == 0 && size > 0) {
             first = first->getNext();
@@ -134,7 +161,9 @@ public:
             }
         }
     }
-
+    /**
+     * @brief Method to delete an element from the list by data
+     * */
     void deleteElement2(T data) {
         Node<T> *current = first;
 
@@ -153,7 +182,10 @@ public:
             }
         }
     }
-
+    /**
+     * @brief Method to see if the list contains an element
+     * @return Bool value if the list contains an specific element
+     * */
     bool containsElement(T data) {
         Node<T> *current = first;
 
@@ -165,7 +197,9 @@ public:
         }
         return false;
     }
-
+    /**
+     * @brief Method for print the list
+     * */
     void printList() {
         Node<T> *current = first;
         while(current != nullptr){

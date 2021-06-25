@@ -1,3 +1,9 @@
+/**
+ * @file main_cn.cpp
+ * @title Main Cn
+ * @brief Class that contains the ceSEARCH for searching books
+**/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,6 +19,9 @@ using namespace std;
 using namespace sf;
 typedef unsigned char byte;
 
+/**
+ * @brief Main method of the class
+ * */
 int main() {
     LinkedList<LinkedList<vector<byte>>> bookList;
     Font font;

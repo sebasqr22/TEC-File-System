@@ -1,3 +1,9 @@
+/**
+ * @file button.cpp
+ * @title Button
+ * @brief Classs for create a button
+ * */
+
 #pragma once
 #include <SFML/Graphics.hpp>
 
@@ -16,6 +22,9 @@ class button {
         int counter;
 
     public:
+        /**
+         * @brief Main constructor
+         * */
         button(Vector2f position, Vector2f size, Font &font, string content, Color idle, Color active) {
             buttonState = BTN_IDLE;
             buttonShape.setPosition(position);
@@ -30,14 +39,19 @@ class button {
             idleColor = idle;
             activeColor = active;
         }
-
+        /**
+         * @brief Method to check if the button was pressed
+         * @return Bool value
+         * */
         bool isPressed() {
             if (buttonShape.getFillColor() == activeColor) {
                 return true;
             }
             return false;
         }
-
+        /**
+         * @brief Method to update the button
+         * */
         void update(Vector2f mousepos) {
             if (Mouse::isButtonPressed(Mouse::Left)) {
                 if (buttonShape.getGlobalBounds().contains(mousepos) && counter == 0) {
@@ -65,7 +79,9 @@ class button {
                     cout << "entered btn_active" << endl;
             }*/
         }
-
+        /**
+         * @brief Method to draw the button
+         * */
         void draw(RenderWindow &window) {
             window.draw(buttonShape);
             window.draw(text);

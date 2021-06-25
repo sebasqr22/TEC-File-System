@@ -1,3 +1,9 @@
+/**
+ * @file disk_node.cpp
+ * @title Disk Node
+ * @brief Class that will contain part of the user's data
+**/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -11,6 +17,9 @@ class disk_node{
     private:
         int maxTotal;
     public:
+    /**
+     * @brief Method that creates a new disk node
+    **/
     void create(){
         system("rm -r ./RAID");
         mkdir("./RAID", 0777);

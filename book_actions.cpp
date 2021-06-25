@@ -1,3 +1,9 @@
+/**
+ * @file book_actions.cpp
+ * @title Book Actions
+ * @brief Class that creates and reads all the books
+**/
+
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -9,6 +15,9 @@ class book_actions{
         string route = "./books/";
 
     public:
+        /**
+         * @brief Method that creates a new book
+        **/
         void createBook(string name, string content){ //it's not necesary to add .txt
             string nameAux = route + name + ".txt";
             ofstream o(route);
@@ -19,6 +28,9 @@ class book_actions{
             o.close();
             cout << "Book '" + name + "' was succesfully created...";
         }
+        /**
+         * @brief Method that extracts the information from a book and reads it.
+        **/
         void readBook(string name){
             string line;
             string content;
