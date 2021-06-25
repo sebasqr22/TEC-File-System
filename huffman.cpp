@@ -106,7 +106,10 @@ string crear(string datos){
     }
     return resultado;
 }
-
+/**
+ * @brief Method to create a string that represents the character's map
+ * @return String of the map
+ * */
 string diccionarioStr(){
     string mapa;
     
@@ -121,7 +124,10 @@ string diccionarioStr(){
     mapa += "-";
     return mapa;
 }
-
+/**
+ * @brief Method to decode the code
+ * @return Decoded string
+ * */
 string decodeHuffman(vector<string> simbolo, vector<string> parte, string code){
     string delimitador = "-";
     size_t pos1 = 0;
@@ -143,7 +149,10 @@ string decodeHuffman(vector<string> simbolo, vector<string> parte, string code){
     }
     return decodificado;
 }
-
+/**
+ * @brief Method for compress a message
+ * @return Coded string
+ * */
 string comprimirMensaje(string mensaje){
     string comprimido;
     for (auto i: mensaje){
@@ -152,14 +161,20 @@ string comprimirMensaje(string mensaje){
     }
     return comprimido;
 }
-
+/**
+ * @brief Sets the initial values for the compression
+ * @return String of the message's map
+ * */
 string start_huffman(string mensaje){
     setFrecuencia(mensaje, mensaje.length());
     generarHuffman(mensaje.length());
     string mapa = diccionarioStr();
     return mapa;
 }
-
+/**
+ * @brief Method for decode a message
+ * @return Decoded Message
+ * */
 string decomprimir(string mapa, string comprimido){
     std::string delimitador = "-";
     std::vector<std::string> simbolo;
@@ -195,7 +210,9 @@ string decomprimir(string mapa, string comprimido){
     string decomprimido = decodeHuffman(simbolo, parte, comprimido);
     return decomprimido;
 }
-
+/**
+ * @brief Method that returns de main tree
+ * @return Main tree
 priority_queue<nodo *, std::vector<nodo *>, comparacion> getMinimo() {
     return minimo;
 }

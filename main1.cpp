@@ -1,3 +1,9 @@
+/**
+ * @file main1.cpp
+ * @title Main 1
+ * @brief Class for TECFS-Disk app
+ * */
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,20 +12,36 @@
 #include <SFML/Network.hpp>
 #include "TECFS-Disk.cpp"
 #include "huffman.cpp"
+#include "tinyxml2.cpp"
 
 using namespace std;
 using namespace sf;
-
+using namespace tinyxml2;
+/**
+ * @brief Method to set initial data
+ * */
+void setData(TECFS_Disk *checker, IpAddress *ip, int *port) {
+    XMLDocument doc;
+    doc.LoadFile("config.xml");
+    ip = doc.FirstChildElement("config")->FirstChildElement("ip")->GetText();
+    port = doc.FirstChildElement("config")->FirstChildElement("ip")->NextSiblingElement("port")->GetText();
+    checker->setRoute(doc.FirstChildElement("config")->LastChildElement("route")->GetText());
+}
+/**
+ * @brief Main method of the class
+ * */
 int main() {
     Packet packetS, packetR;
     TcpListener listener;
-    IpAddress ip = IpAddress::getLocalAddress(); //ip_
+    IpAddress ip;
+    int port;
+    TECFS_Disk checker;
     TcpSocket socket;
-    listener.listen(8080); //port_
+    setData(&checker, &ip, &port);
+    listener.listen(port);
     listener.accept(socket);
     string mapa;
     string pathReceived;
-    TECFS_Disk checker;
     bool done = true;
 
     while (done) {

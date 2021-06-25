@@ -1,0 +1,144 @@
+\hypertarget{controller__node_8cpp}{}\doxysection{controller\+\_\+node.\+cpp File Reference}
+\label{controller__node_8cpp}\index{controller\_node.cpp@{controller\_node.cpp}}
+
+
+Class that handles the memory and lecture of books of a RAID.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$dirent.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Linked\+List.\+cpp\char`\"{}}\newline
+{\ttfamily \#include $<$SFML/\+Graphics.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}button.\+cpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ce\+SEARCH.\+cpp\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned char \mbox{\hyperlink{controller__node_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{controller__node_8cpp_a5816440ad2e6bdb6a389cf3dd385770b}{create\+Book\+Partitions}} (\mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$ vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$$>$ book, string name)
+\begin{DoxyCompactList}\small\item\em Method to create book partitions and save them in different disks. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ \mbox{\hyperlink{controller__node_8cpp_acef84368de4c8d9d268b0886029ef90f}{calculate\+Parity}} (vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ A, vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ B, vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ C)
+\begin{DoxyCompactList}\small\item\em Method to calculate parity vector of the book parts. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{controller__node_8cpp_ae7a334599d335f6ff4551528374469a3}{recover\+Data}} (string part\+AStr, string part\+BStr, string parity\+String)
+\begin{DoxyCompactList}\small\item\em Method to recover lost data of a book. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{controller__node_8cpp_a59bf1e6bad59358b5d9c57b691b66944}{locate\+Partition\+Erased}} (\mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$ vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$$>$ book, vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ vector\+Recovered)
+\begin{DoxyCompactList}\small\item\em Method to locate what disk was erased. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$ vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$ $>$ \mbox{\hyperlink{controller__node_8cpp_a530f5889e51dc369112be5f90c163a58}{split\+File}} (string file)
+\begin{DoxyCompactList}\small\item\em Method to split file into different vectors and adds them into a linked list. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{controller__node_8cpp_a5f83df2bce574b5e09ffb20508a36101}{join\+Book\+Parts}} (string part1, string part2, string part3)
+\item 
+vector$<$ string $>$ \mbox{\hyperlink{controller__node_8cpp_a87b4ca9e93c637144ec38c3f14734633}{open\+Books}} (string name)
+\begin{DoxyCompactList}\small\item\em Method to open books located on the disks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{controller__node_8cpp_a60c46250e773f6f3d9c6a5b4ee05ed53}{mem\+Block}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that handles the memory and lecture of books of a RAID. 
+
+@title Controller \mbox{\hyperlink{class_node}{Node}} 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{controller__node_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}\label{controller__node_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!byte@{byte}}
+\index{byte@{byte}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{byte}{byte}}
+{\footnotesize\ttfamily typedef unsigned char \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{controller__node_8cpp_acef84368de4c8d9d268b0886029ef90f}\label{controller__node_8cpp_acef84368de4c8d9d268b0886029ef90f}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!calculateParity@{calculateParity}}
+\index{calculateParity@{calculateParity}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{calculateParity()}{calculateParity()}}
+{\footnotesize\ttfamily vector$<$\mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}$>$ calculate\+Parity (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$}]{A,  }\item[{vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$}]{B,  }\item[{vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$}]{C }\end{DoxyParamCaption})}
+
+
+
+Method to calculate parity vector of the book parts. 
+
+\begin{DoxyReturn}{Returns}
+parity vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{controller__node_8cpp_a5816440ad2e6bdb6a389cf3dd385770b}\label{controller__node_8cpp_a5816440ad2e6bdb6a389cf3dd385770b}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!createBookPartitions@{createBookPartitions}}
+\index{createBookPartitions@{createBookPartitions}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{createBookPartitions()}{createBookPartitions()}}
+{\footnotesize\ttfamily void create\+Book\+Partitions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$ vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$$>$}]{book,  }\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Method to create book partitions and save them in different disks. 
+
+\mbox{\Hypertarget{controller__node_8cpp_a5f83df2bce574b5e09ffb20508a36101}\label{controller__node_8cpp_a5f83df2bce574b5e09ffb20508a36101}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!joinBookParts@{joinBookParts}}
+\index{joinBookParts@{joinBookParts}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{joinBookParts()}{joinBookParts()}}
+{\footnotesize\ttfamily string join\+Book\+Parts (\begin{DoxyParamCaption}\item[{string}]{part1,  }\item[{string}]{part2,  }\item[{string}]{part3 }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{controller__node_8cpp_a59bf1e6bad59358b5d9c57b691b66944}\label{controller__node_8cpp_a59bf1e6bad59358b5d9c57b691b66944}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!locatePartitionErased@{locatePartitionErased}}
+\index{locatePartitionErased@{locatePartitionErased}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{locatePartitionErased()}{locatePartitionErased()}}
+{\footnotesize\ttfamily void locate\+Partition\+Erased (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$ vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$$>$}]{book,  }\item[{vector$<$ \mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}} $>$}]{vector\+Recovered }\end{DoxyParamCaption})}
+
+
+
+Method to locate what disk was erased. 
+
+\mbox{\Hypertarget{controller__node_8cpp_a87b4ca9e93c637144ec38c3f14734633}\label{controller__node_8cpp_a87b4ca9e93c637144ec38c3f14734633}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!openBooks@{openBooks}}
+\index{openBooks@{openBooks}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{openBooks()}{openBooks()}}
+{\footnotesize\ttfamily vector$<$string$>$ open\+Books (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Method to open books located on the disks. 
+
+\mbox{\Hypertarget{controller__node_8cpp_ae7a334599d335f6ff4551528374469a3}\label{controller__node_8cpp_ae7a334599d335f6ff4551528374469a3}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!recoverData@{recoverData}}
+\index{recoverData@{recoverData}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{recoverData()}{recoverData()}}
+{\footnotesize\ttfamily string recover\+Data (\begin{DoxyParamCaption}\item[{string}]{part\+AStr,  }\item[{string}]{part\+BStr,  }\item[{string}]{parity\+String }\end{DoxyParamCaption})}
+
+
+
+Method to recover lost data of a book. 
+
+\begin{DoxyReturn}{Returns}
+recovered book vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{controller__node_8cpp_a530f5889e51dc369112be5f90c163a58}\label{controller__node_8cpp_a530f5889e51dc369112be5f90c163a58}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!splitFile@{splitFile}}
+\index{splitFile@{splitFile}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{splitFile()}{splitFile()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_linked_list}{Linked\+List}}$<$vector$<$\mbox{\hyperlink{ce_s_e_a_r_c_h_8cpp_a0c8186d9b9b7880309c27230bbb5e69d}{byte}}$>$ $>$ split\+File (\begin{DoxyParamCaption}\item[{string}]{file }\end{DoxyParamCaption})}
+
+
+
+Method to split file into different vectors and adds them into a linked list. 
+
+\begin{DoxyReturn}{Returns}
+linked list of the book 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{controller__node_8cpp_a60c46250e773f6f3d9c6a5b4ee05ed53}\label{controller__node_8cpp_a60c46250e773f6f3d9c6a5b4ee05ed53}} 
+\index{controller\_node.cpp@{controller\_node.cpp}!memBlock@{memBlock}}
+\index{memBlock@{memBlock}!controller\_node.cpp@{controller\_node.cpp}}
+\doxysubsubsection{\texorpdfstring{memBlock}{memBlock}}
+{\footnotesize\ttfamily int mem\+Block = 0}
+

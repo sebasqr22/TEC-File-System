@@ -1,0 +1,212 @@
+\hypertarget{huffman_8cpp}{}\doxysection{huffman.\+cpp File Reference}
+\label{huffman_8cpp}\index{huffman.cpp@{huffman.cpp}}
+
+
+Class that compresses a string using Huffman\textquotesingle{}s algortihm.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$bits/stdc++.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structnodo}{nodo}}
+\item 
+struct \mbox{\hyperlink{structcomparacion}{comparacion}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{huffman_8cpp_a39a2b19cb2acdfd409c1928dbb71b62a}{MAX\+\_\+\+TREE\+\_\+\+HT}}~256
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{huffman_8cpp_acd134697019ce0b816f187c19b3a5667}{guardar}} (struct \mbox{\hyperlink{structnodo}{nodo}} $\ast$inicio, string tmp)
+\begin{DoxyCompactList}\small\item\em Method to save data to reused later. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8cpp_ab10a2780e6ad187b0adfd03768493e7e}{generar\+Huffman}} (int largo)
+\begin{DoxyCompactList}\small\item\em Method to generate part of the compression. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8cpp_a75c5b515213c05e8dbff35c3ae2519ae}{set\+Frecuencia}} (string data, int num)
+\begin{DoxyCompactList}\small\item\em Method to calculate frecuency. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_adfe8ee8f39b8967053b68501c5c21204}{decodificacion}} (struct \mbox{\hyperlink{structnodo}{nodo}} $\ast$inicio, string tmp)
+\begin{DoxyCompactList}\small\item\em Method to create the decode. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a4eca4ad1e19c8e1df390be92f35b7ea3}{crear}} (string datos)
+\begin{DoxyCompactList}\small\item\em Method for generate the compression. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a341a7423982a538e6945707a30fe518d}{diccionario\+Str}} ()
+\begin{DoxyCompactList}\small\item\em Method to create a string that represents the character\textquotesingle{}s map. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a4da3a1db92704fdd969ce4b27ad028b8}{decode\+Huffman}} (vector$<$ string $>$ simbolo, vector$<$ string $>$ parte, string code)
+\begin{DoxyCompactList}\small\item\em Method to decode the code. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a886b481f8e9308b8870afdfb1f222281}{comprimir\+Mensaje}} (string mensaje)
+\begin{DoxyCompactList}\small\item\em Method for compress a message. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a986d63544819d5ed33bdf03d205791ab}{start\+\_\+huffman}} (string mensaje)
+\begin{DoxyCompactList}\small\item\em Sets the initial values for the compression. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{huffman_8cpp_a8272ec2b6eb032b02189c21f0d95462f}{decomprimir}} (string mapa, string comprimido)
+\begin{DoxyCompactList}\small\item\em Method for decode a message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+map$<$ char, string $>$ \mbox{\hyperlink{huffman_8cpp_a77b9373e1d224793a702843e903f8a7e}{caracteres}}
+\item 
+map$<$ char, int $>$ \mbox{\hyperlink{huffman_8cpp_a8ccaf59d68b4cd4d0344b53523782e80}{frecuencia}}
+\item 
+priority\+\_\+queue$<$ \mbox{\hyperlink{structnodo}{nodo}} $\ast$, vector$<$ \mbox{\hyperlink{structnodo}{nodo}} $\ast$ $>$, \mbox{\hyperlink{structcomparacion}{comparacion}} $>$ \mbox{\hyperlink{huffman_8cpp_ae41a8c17f3d2753d544c791b1a40aae0}{minimo}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that compresses a string using Huffman\textquotesingle{}s algortihm. 
+
+@title Huffman 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{huffman_8cpp_a39a2b19cb2acdfd409c1928dbb71b62a}\label{huffman_8cpp_a39a2b19cb2acdfd409c1928dbb71b62a}} 
+\index{huffman.cpp@{huffman.cpp}!MAX\_TREE\_HT@{MAX\_TREE\_HT}}
+\index{MAX\_TREE\_HT@{MAX\_TREE\_HT}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{MAX\_TREE\_HT}{MAX\_TREE\_HT}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+TREE\+\_\+\+HT~256}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{huffman_8cpp_a886b481f8e9308b8870afdfb1f222281}\label{huffman_8cpp_a886b481f8e9308b8870afdfb1f222281}} 
+\index{huffman.cpp@{huffman.cpp}!comprimirMensaje@{comprimirMensaje}}
+\index{comprimirMensaje@{comprimirMensaje}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{comprimirMensaje()}{comprimirMensaje()}}
+{\footnotesize\ttfamily string comprimir\+Mensaje (\begin{DoxyParamCaption}\item[{string}]{mensaje }\end{DoxyParamCaption})}
+
+
+
+Method for compress a message. 
+
+\begin{DoxyReturn}{Returns}
+Coded string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_a4eca4ad1e19c8e1df390be92f35b7ea3}\label{huffman_8cpp_a4eca4ad1e19c8e1df390be92f35b7ea3}} 
+\index{huffman.cpp@{huffman.cpp}!crear@{crear}}
+\index{crear@{crear}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{crear()}{crear()}}
+{\footnotesize\ttfamily string crear (\begin{DoxyParamCaption}\item[{string}]{datos }\end{DoxyParamCaption})}
+
+
+
+Method for generate the compression. 
+
+\begin{DoxyReturn}{Returns}
+String compressed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_a4da3a1db92704fdd969ce4b27ad028b8}\label{huffman_8cpp_a4da3a1db92704fdd969ce4b27ad028b8}} 
+\index{huffman.cpp@{huffman.cpp}!decodeHuffman@{decodeHuffman}}
+\index{decodeHuffman@{decodeHuffman}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{decodeHuffman()}{decodeHuffman()}}
+{\footnotesize\ttfamily string decode\+Huffman (\begin{DoxyParamCaption}\item[{vector$<$ string $>$}]{simbolo,  }\item[{vector$<$ string $>$}]{parte,  }\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Method to decode the code. 
+
+\begin{DoxyReturn}{Returns}
+Decoded string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_adfe8ee8f39b8967053b68501c5c21204}\label{huffman_8cpp_adfe8ee8f39b8967053b68501c5c21204}} 
+\index{huffman.cpp@{huffman.cpp}!decodificacion@{decodificacion}}
+\index{decodificacion@{decodificacion}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{decodificacion()}{decodificacion()}}
+{\footnotesize\ttfamily string decodificacion (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structnodo}{nodo}} $\ast$}]{inicio,  }\item[{string}]{tmp }\end{DoxyParamCaption})}
+
+
+
+Method to create the decode. 
+
+\begin{DoxyReturn}{Returns}
+String with original content 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_a8272ec2b6eb032b02189c21f0d95462f}\label{huffman_8cpp_a8272ec2b6eb032b02189c21f0d95462f}} 
+\index{huffman.cpp@{huffman.cpp}!decomprimir@{decomprimir}}
+\index{decomprimir@{decomprimir}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{decomprimir()}{decomprimir()}}
+{\footnotesize\ttfamily string decomprimir (\begin{DoxyParamCaption}\item[{string}]{mapa,  }\item[{string}]{comprimido }\end{DoxyParamCaption})}
+
+
+
+Method for decode a message. 
+
+\begin{DoxyReturn}{Returns}
+Decoded Message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_a341a7423982a538e6945707a30fe518d}\label{huffman_8cpp_a341a7423982a538e6945707a30fe518d}} 
+\index{huffman.cpp@{huffman.cpp}!diccionarioStr@{diccionarioStr}}
+\index{diccionarioStr@{diccionarioStr}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{diccionarioStr()}{diccionarioStr()}}
+{\footnotesize\ttfamily string diccionario\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Method to create a string that represents the character\textquotesingle{}s map. 
+
+\begin{DoxyReturn}{Returns}
+String of the map 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8cpp_ab10a2780e6ad187b0adfd03768493e7e}\label{huffman_8cpp_ab10a2780e6ad187b0adfd03768493e7e}} 
+\index{huffman.cpp@{huffman.cpp}!generarHuffman@{generarHuffman}}
+\index{generarHuffman@{generarHuffman}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{generarHuffman()}{generarHuffman()}}
+{\footnotesize\ttfamily void generar\+Huffman (\begin{DoxyParamCaption}\item[{int}]{largo }\end{DoxyParamCaption})}
+
+
+
+Method to generate part of the compression. 
+
+\mbox{\Hypertarget{huffman_8cpp_acd134697019ce0b816f187c19b3a5667}\label{huffman_8cpp_acd134697019ce0b816f187c19b3a5667}} 
+\index{huffman.cpp@{huffman.cpp}!guardar@{guardar}}
+\index{guardar@{guardar}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{guardar()}{guardar()}}
+{\footnotesize\ttfamily void guardar (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structnodo}{nodo}} $\ast$}]{inicio,  }\item[{string}]{tmp }\end{DoxyParamCaption})}
+
+
+
+Method to save data to reused later. 
+
+\mbox{\Hypertarget{huffman_8cpp_a75c5b515213c05e8dbff35c3ae2519ae}\label{huffman_8cpp_a75c5b515213c05e8dbff35c3ae2519ae}} 
+\index{huffman.cpp@{huffman.cpp}!setFrecuencia@{setFrecuencia}}
+\index{setFrecuencia@{setFrecuencia}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{setFrecuencia()}{setFrecuencia()}}
+{\footnotesize\ttfamily void set\+Frecuencia (\begin{DoxyParamCaption}\item[{string}]{data,  }\item[{int}]{num }\end{DoxyParamCaption})}
+
+
+
+Method to calculate frecuency. 
+
+\mbox{\Hypertarget{huffman_8cpp_a986d63544819d5ed33bdf03d205791ab}\label{huffman_8cpp_a986d63544819d5ed33bdf03d205791ab}} 
+\index{huffman.cpp@{huffman.cpp}!start\_huffman@{start\_huffman}}
+\index{start\_huffman@{start\_huffman}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{start\_huffman()}{start\_huffman()}}
+{\footnotesize\ttfamily string start\+\_\+huffman (\begin{DoxyParamCaption}\item[{string}]{mensaje }\end{DoxyParamCaption})}
+
+
+
+Sets the initial values for the compression. 
+
+\begin{DoxyReturn}{Returns}
+String of the message\textquotesingle{}s map 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{huffman_8cpp_a77b9373e1d224793a702843e903f8a7e}\label{huffman_8cpp_a77b9373e1d224793a702843e903f8a7e}} 
+\index{huffman.cpp@{huffman.cpp}!caracteres@{caracteres}}
+\index{caracteres@{caracteres}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{caracteres}{caracteres}}
+{\footnotesize\ttfamily map$<$char, string$>$ caracteres}
+
+\mbox{\Hypertarget{huffman_8cpp_a8ccaf59d68b4cd4d0344b53523782e80}\label{huffman_8cpp_a8ccaf59d68b4cd4d0344b53523782e80}} 
+\index{huffman.cpp@{huffman.cpp}!frecuencia@{frecuencia}}
+\index{frecuencia@{frecuencia}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{frecuencia}{frecuencia}}
+{\footnotesize\ttfamily map$<$char, int$>$ frecuencia}
+
+\mbox{\Hypertarget{huffman_8cpp_ae41a8c17f3d2753d544c791b1a40aae0}\label{huffman_8cpp_ae41a8c17f3d2753d544c791b1a40aae0}} 
+\index{huffman.cpp@{huffman.cpp}!minimo@{minimo}}
+\index{minimo@{minimo}!huffman.cpp@{huffman.cpp}}
+\doxysubsubsection{\texorpdfstring{minimo}{minimo}}
+{\footnotesize\ttfamily priority\+\_\+queue$<$\mbox{\hyperlink{structnodo}{nodo}}$\ast$, vector$<$\mbox{\hyperlink{structnodo}{nodo}}$\ast$$>$, \mbox{\hyperlink{structcomparacion}{comparacion}}$>$ minimo}
+

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <config>
     <ip>
         127.0.0.1
@@ -6,6 +7,6 @@
         8080
     </port>
     <route>
-        "./disks"
+        "./RAID/"
     </route>
 </config>

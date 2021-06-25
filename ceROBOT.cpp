@@ -21,6 +21,9 @@
 
 using namespace rapidjson;
 
+/**
+ * @brief Method to add books to the RAID
+ * */
 void AddToRaid(const char* directory){
     LinkedList<vector<byte>> linked;
     disk_node diskNode;
@@ -78,7 +81,9 @@ void AddToRaid(const char* directory){
     }
     cout << "finished" << endl;
 }
-
+/**
+ * @brief Method that creates the GUI
+ * */
 int ceROBOT() {
     Font font;
     font.loadFromFile("BigShouldersStencilDisplay-Regular.ttf");
