@@ -22,7 +22,7 @@ typedef unsigned char byte;
 /**
  * @brief Main method of the class
  * */
-int main() {
+int ceSEARCH() {
     LinkedList<LinkedList<vector<byte>>> bookList;
     Font font;
     font.loadFromFile("BigShouldersStencilDisplay-Regular.ttf");
@@ -50,7 +50,6 @@ int main() {
         while (window.pollEvent(event)) {
             switch (event.type) {
                 case Event::Closed:
-                    //socket.disconnect();
                     window.close();
                     break;
 

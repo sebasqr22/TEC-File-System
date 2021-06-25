@@ -1,3 +1,9 @@
+/**
+ * @file mainwindow.cpp
+ * @title Main Window
+ * @brief Class with window's methods
+ * */
+
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "disk_node.cpp"
@@ -14,6 +20,9 @@
 using namespace std;
 typedef unsigned char byte;
 
+/**
+ * @brief Main constructor
+ * */
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -25,13 +34,17 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
+/**
+ * @brief Method to set some messages on screen
+ * */
 void MainWindow::contentText(QString data, int time){
     ui->content->setText("");
     ui->content->setText(data);
     sleep(time);
 }
-
+/**
+ * @brief Method to add a book to the RAID
+ * */
 void AddToRaid(const char* directory){
     LinkedList<vector<byte>> linked;
     disk_node diskNode;
@@ -64,6 +77,9 @@ void AddToRaid(const char* directory){
     }
 
 }
+/**
+ * @brief Method for save a new book
+ **/
 void MainWindow::on_guardarBoton_clicked()
 {
     book_actions actions;
@@ -82,7 +98,9 @@ void MainWindow::on_guardarBoton_clicked()
         //AddToRaid("/home/sebas/Escritorio/ceROBOT/ceROBOT/books/");
     }
 }
-
+/**
+ * @brief Method to add books to RAID
+ **/
 void MainWindow::on_pushButton_clicked()
 {
     AddToRaid("/home/sebas/Escritorio/ceROBOT/ceROBOT/books/");

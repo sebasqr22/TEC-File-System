@@ -10,6 +10,9 @@
 #include <vector>
 #include <dirent.h>
 #include "LinkedList.cpp"
+#include <SFML/Graphics.hpp>
+#include "ceSEARCH.cpp"
+#include "button.cpp"
 
 using namespace std;
 
@@ -29,7 +32,7 @@ void createBookPartitions(LinkedList<vector<byte>> book, string name) {
         for (auto & j : bookPartition) {
             content += j;
         }
-        route = "./RAID/disk" + to_string(i) + "/bloque" + to_string(memBlock) + "/";
+        route = "/home/sebas/Escritorio/ceROBOT/ceROBOT/RAID/disk" + to_string(i) + "/bloque" + to_string(memBlock) + "/";
         nameAux = route + name + to_string(i) + ".txt";
 
         ofstream o(route);
@@ -156,7 +159,7 @@ vector<string> openBooks(string name) {
     DIR * dir; struct dirent *diread;
     for (int j=0; j < 20; j++) {
         for (int i=0; i < 4; i++) {
-            string route = "./RAID/disk" + to_string(i) + "/bloque" + to_string(j) + "/";
+            string route = "/home/sebas/Escritorio/ceROBOT/ceROBOT/RAID/disk" + to_string(i) + "/bloque" + to_string(j) + "/";
             if ((dir = opendir(route.c_str())) != nullptr) {
                 while ((diread = readdir(dir)) != nullptr) {
                     string fname = diread->d_name;
@@ -228,8 +231,8 @@ vector<string> openBooks(string name) {
     return books;
 }
 
-/*int main(){
-    LinkedList<vector<byte>> book; 
+int main(){
+    /*LinkedList<vector<byte>> book; 
     for (int i=0; i < 10; i++) {
         book = splitFile(i);
         createBookPartitions(book, i);
@@ -242,7 +245,52 @@ vector<string> openBooks(string name) {
     //cin >> diskToErase;
     //book.deleteElement(diskToErase);
     //book.insertElement(recoverData(book.getElement(0)->getData(), book.getElement(1)->getData(), book.getElement(2)->getData()), diskToErase);
-    //createBookPartitions(book, "test");
+    //createBookPartitions(book, "test");*/
+    Font font;
+    font.loadFromFile("BigShouldersStencilDisplay-Regular.ttf");
+    RenderWindow window(VideoMode(750,750), "TEC-File System");
+    Texture backgroundTexture;
+    RectangleShape background;
+    Text searchText;
+    searchText.setString("Please enter codewords for the book: ");
+    searchText.setPosition(10,80);
+    searchText.setFont(font);
+    searchText.setFillColor(Color::Black);
+
+    backgroundTexture.loadFromFile("background.png");
+    background.setPosition(0,0);
+    background.setTexture(&backgroundTexture);
+    background.setSize(Vector2f(750,750));
+
+    button ceROBOT(Vector2f(125, 250), Vector2f(100,50), font, "ceROBOT", Color::Red, Color::Green);
+    button ceSEARCH(Vector2f(125, 500), Vector2f(100,50), font, "ceSEARCH", Color::Blue, Color::Green);
+
+    while (window.isOpen()) {
+        Event event;
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case Event::Closed:
+                    //socket.disconnect();
+                    window.close();
+                    break;
+            }
+            ceROBOT.update(Vector2f(event.mouseButton.x, event.mouseButton.y));
+            ceSEARCH.update(Vector2f(event.mouseButton.x, event.mouseButton.y));
+            if (ceROBOT.isPressed()) {
+                //open
+            }
+            else if (ceSEARCH.isPressed()) {
+                ceSEARCH();
+            }
+        }
+        window.clear();
+        window.draw(background);
+        window.draw(searchText);
+        ceROBOT.draw(window);
+        ceSEARCH.draw(window);
+
+        window.display();
+    }
 
     return 0;
-}*/
+}

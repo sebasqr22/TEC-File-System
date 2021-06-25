@@ -1,9 +1,9 @@
 /**
- * @file main_cn.cpp
- * @title Main Cn
+ * @file ceSEARCH.cpp
+ * @title ceSEARCH
  * @brief Class that contains the ceSEARCH for searching books
 **/
-
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -22,7 +22,7 @@ typedef unsigned char byte;
 /**
  * @brief Main method of the class
  * */
-int main() {
+int ceSEARCH() {
     LinkedList<LinkedList<vector<byte>>> bookList;
     Font font;
     font.loadFromFile("BigShouldersStencilDisplay-Regular.ttf");

@@ -76,6 +76,11 @@ class text_box {
             }
             text.setString(textStr);
         }
+        
+        void setString2(string input) {
+            textStr = input;
+            text.setString(textStr);
+        }
 
         /**
          * @brief Method to get the string
